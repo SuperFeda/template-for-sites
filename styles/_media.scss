@@ -14,7 +14,7 @@ $mobile-s: 480px;
     ru: миксины для упрощения работы с медиа-запросами.
 
     Миксины с Above для применения стилей к экранам, начиная от определённой ширины и шире
-    (например, mobile-above для >= 768px), это типично для "mobile-first". Миксины без Above применяют стили к
+    (например, mobile-above для >= 768px), это типично для mobile-first. Миксины без Above применяют стили к
     экранам до определённой ширины и меньше (например, tablet для <= 1023px).
 
     Пример использования:
@@ -41,10 +41,10 @@ $mobile-s: 480px;
 
 
 
-    en: Mixins to simplify working with media queries.
+    en: mixins to simplify working with media queries.
 
     Mixins with Above apply styles to screens starting from a specific width and wider (e.g., mobile-above for >= 768px),
-    which is typical for a "mobile-first" approach. Mixins without Above apply styles to screens up to a specific
+    which is typical for a mobile-first approach. Mixins without Above apply styles to screens up to a specific
     width and narrower (e.g., tablet for <= 1023px).
 
     Example usage:

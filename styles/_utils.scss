@@ -6,11 +6,6 @@
     @include noDisplay();
 }
 
-.disable {
-    pointer-events: none !important;
-    overflow: hidden !important;
-}
-
 .hidden-mobile {
     /*
         ru: скрыть элемент на экране меньше 767px

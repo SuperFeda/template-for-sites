@@ -27,9 +27,8 @@
         ru: адаптивный размер шрифта, зависящий от размера вьюпорта и ориентированный на rem
         en: adaptive font size, depending on the size of the viewport and focused on rem
     */
-
-    $max-viewport-width: 1400;  // максимальная ширина страницы по макету (--max-site-container-width)
-    $min-viewport-width: 360;   // минимальная ширина страницы по макету (--min-site-container-width)
+    $max-viewport-width: 1400;  // максимальная ширина страницы по макету (--max-site-container-width in vars.scss)
+    $min-viewport-width: 360;   // минимальная ширина страницы по макету (--min-site-container-width in vars.scss)
 
     $max-size: math.div($max, 16);
     $min-size: math.div($min, 16);
@@ -47,6 +46,87 @@
 }
 
 @mixin hover {
+    /*
+        ru: миксин для корректной работы hover-эффектов на разных устройствах.
+
+        Решает проблему залипания стилей на тач-устройствах, где обычный :hover не возвращается в
+        исходное состояние после касания.
+          -  На устройствах с курсором (ПК) применяет стили через :hover.
+          -  На тач-устройствах (телефоны, планшеты) использует :active, чтобы эффект срабатывал только при нажатии.
+
+        Если нужна отдельная стилизация для :hover и для :active, то данный миксин использовать не нужно.
+
+        Пример использования:
+
+            SCSS код:
+            button {
+                padding: 10px 15px;
+                background: blue;
+                border: 1px solid red;
+
+                @include hover {
+                    background: aqua;
+                }
+            }
+
+            CSS перевод:
+            button {
+                padding: 10px 15px;
+                background: blue;
+                border: 1px solid red;
+            }
+            @media (hover: hover) {
+                button:hover {
+                    background: aqua;
+                }
+            }
+            @media (hover: none) {
+                button:active {
+                    background: aqua;
+                }
+            }
+
+
+
+
+        en: mixin for proper hover effects across different devices.
+
+        Fixes the sticky hover issue on touch devices, where the default :hover state remains active after tapping.
+          -  On cursor-based devices (desktops), it applies styles via :hover.
+          -  On touch devices (phones, tablets), it uses :active to trigger effects only on tap.
+
+        Do not use this mixin if :hover and :active need distinct styles.
+
+        Example usage:
+
+            SCSS code:
+            button {
+                padding: 10px 15px;
+                background: blue;
+                border: 1px solid red;
+
+                @include hover {
+                    background: aqua;
+                }
+            }
+
+            Compiled CSS:
+            button {
+                padding: 10px 15px;
+                background: blue;
+                border: 1px solid red;
+            }
+            @media (hover: hover) {
+                button:hover {
+                    background: aqua;
+                }
+            }
+            @media (hover: none) {
+                button:active {
+                    background: aqua;
+                }
+            }
+    */
     @media (hover: hover) {
         &:hover {
             @content;
@@ -57,18 +137,6 @@
         &:active {
             @content;
         }
-    }
-}
-
-@mixin onlyHover {
-    &:hover {
-        @content;
-    }
-}
-
-@mixin onlyActive {
-    &:active {
-        @content;
     }
 }
 

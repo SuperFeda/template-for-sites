@@ -1,3 +1,19 @@
+/*
+    ru: данная конфигурация стилей ориентирована на формат сайта из трех элементов: header, main и footer,
+    где header вверху, main в центре, а footer в самом низу.
+
+    en: this style configuration is focused on the site format of three elements: header, main and footer.
+    Header is at the top, main is in the center, and footer is at the bottom.
+
+    | header |
+    |--------|
+    |  main  |
+    |        |
+    |        |
+    |--------|
+    | footer |
+*/
+
 html, body {
     height: 100%;
     scroll-behavior: smooth;
@@ -16,6 +32,10 @@ body {
 }
 
 #box {
+    /*
+        ru: отображение flexbox column для того, чтобы сразу прижать footer к низу страницы.
+        en: displaying a flexbox column in order to immediately press the footer to the bottom of the page.
+    */
     display: flex;
     flex-direction: column;
     min-height: 100%;
