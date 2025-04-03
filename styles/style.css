@@ -1,0 +1,289 @@
+@charset "UTF-8";
+/*
+    en: Fonts
+    ru: Шрифты
+*/
+/*
+    en: Base styles
+    ru: Базовые стили
+*/
+:root {
+  --max-site-container-width: 1400px;
+  --min-site-container-width: 360px;
+}
+
+/*
+    ru: миксины для упрощения работы с медиа-запросами.
+
+    Миксины с Above для применения стилей к экранам, начиная от определённой ширины и шире
+    (например, mobile-above для >= 768px), это типично для "mobile-first". Миксины без Above применяют стили к
+    экранам до определённой ширины и меньше (например, tablet для <= 1023px).
+
+    Пример использования:
+
+        SCSS код:
+        button {
+            font-size: rem(12);
+
+            @include tablet {
+                font-size: rem(9);
+            }
+        }
+
+        Перевод в CSS:
+        button {
+            font-size: 0.75rem;
+        }
+        @media (max-width: 1023px) {
+            button {
+                font-size: 0.5625rem;
+            }
+        }
+
+
+
+
+    en: Mixins to simplify working with media queries.
+
+    Mixins with Above apply styles to screens starting from a specific width and wider (e.g., mobile-above for >= 768px),
+    which is typical for a "mobile-first" approach. Mixins without Above apply styles to screens up to a specific
+    width and narrower (e.g., tablet for <= 1023px).
+
+    Example usage:
+
+        SCSS code:
+        button {
+            font-size: rem(12);
+
+            @include tablet {
+                font-size: rem(9);
+            }
+        }
+
+        Compiled CSS:
+        button {
+            font-size: 0.75rem;
+        }
+        @media (max-width: 1023px) {
+            button {
+                font-size: 0.5625rem;
+            }
+        }
+*/
+.no-display {
+  /*
+      ru: полностью скрыть элемент на странице
+      en: completely hide the element on the page
+  */
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+.disable {
+  pointer-events: none !important;
+  overflow: hidden !important;
+}
+
+.hidden-mobile {
+  /*
+      ru: скрыть элемент на экране меньше 767px
+      en: hide an item on the screen smaller than 767px
+  */
+}
+@media (max-width: 767px) {
+  .hidden-mobile {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    border: 0 !important;
+    padding: 0 !important;
+    white-space: nowrap !important;
+    clip-path: inset(100%) !important;
+    clip: rect(0 0 0 0) !important;
+    overflow: hidden !important;
+  }
+}
+
+.visible-mobile {
+  /*
+      ru: отобразить элемент на мобильном устройстве и скрыть, если размер экрана больше 767px
+      en: display the item on a mobile device and hide it if the screen size is greater than 767px
+  */
+}
+@media (min-width: 768px) {
+  .visible-mobile {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    border: 0 !important;
+    padding: 0 !important;
+    white-space: nowrap !important;
+    clip-path: inset(100%) !important;
+    clip: rect(0 0 0 0) !important;
+    overflow: hidden !important;
+  }
+}
+
+html, body {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-size: 1rem;
+}
+
+.container {
+  max-width: var(--max-site-container-width);
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+#box {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+main {
+  flex: 1 1 auto;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+p {
+  margin-block: 0;
+}
+
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: 24px;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  height: 100%;
+  scrollbar-gutter: stable;
+}
+
+html,
+:has(:target) {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  line-height: 1.5;
+}
+
+a:where([class]) {
+  display: inline-flex;
+}
+
+button,
+label {
+  cursor: pointer;
+}
+
+:where([fill]:not([fill=none],
+[fill^=url])) {
+  fill: currentColor;
+}
+
+:where([stroke]:not([stroke=none],
+[stroke^=url])) {
+  stroke: currentColor;
+}
+
+svg * {
+  transition-property: fill, stroke;
+}
+
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/*
+    en: BEM блоки
+    ru: БЭМ блоки
+*/
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,86 @@
+@use 'sass:math';
+
+
+@mixin marginCenter {
+    margin: auto;
+}
+
+@mixin flexCenter($is-inline: false) {
+    @if $is-inline {
+        display: inline-flex;
+    } @else {
+        display: flex;
+    }
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin absCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+@mixin adaptFontSize($max: 36, $min: 16) {
+    /*
+        ru: адаптивный размер шрифта, зависящий от размера вьюпорта и ориентированный на rem
+        en: adaptive font size, depending on the size of the viewport and focused on rem
+    */
+
+    $max-viewport-width: 1400;  // максимальная ширина страницы по макету (--max-site-container-width)
+    $min-viewport-width: 360;   // минимальная ширина страницы по макету (--min-site-container-width)
+
+    $max-size: math.div($max, 16);
+    $min-size: math.div($min, 16);
+    $max-width: math.div($max-viewport-width, 16);
+    $min-width: math.div($min-viewport-width, 16);
+
+    $slope: math.div(($max-size - $min-size), ($max-width - $min-width));
+    $y-axis-intersection: -$min-width * $slope + $min-size;
+
+    font-size: clamp(
+            #{$min-size * 1rem},
+            #{$y-axis-intersection * 1rem} + #{$slope * 100vw},
+            #{$max-size * 1rem}
+    );
+}
+
+@mixin hover {
+    @media (hover: hover) {
+        &:hover {
+            @content;
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            @content;
+        }
+    }
+}
+
+@mixin onlyHover {
+    &:hover {
+        @content;
+    }
+}
+
+@mixin onlyActive {
+    &:active {
+        @content;
+    }
+}
+
+@mixin noDisplay {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    border: 0 !important;
+    padding: 0 !important;
+    white-space: nowrap !important;
+    clip-path: inset(100%) !important;
+    clip: rect(0 0 0 0) !important;
+    overflow: hidden !important;
+}

@@ -1,0 +1,31 @@
+/*
+    en: Fonts
+    ru: Шрифты
+*/
+@import
+"./fonts/font1",
+"./fonts/font2"
+;
+
+/*
+    en: Base styles
+    ru: Базовые стили
+*/
+@import
+"vars",
+"funcs",
+"media",
+"mixin",
+"utils",
+"global",
+"normalize"
+;
+
+/*
+    en: BEM блоки
+    ru: БЭМ блоки
+*/
+@import
+"./blocks/header",
+"./blocks/footer"
+;

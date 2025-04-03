@@ -1,0 +1,13 @@
+@use "sass:math";
+
+@function rem($px) {
+    /*
+        ru: перевод из px в rem
+        en: transfer from px to rem
+    */
+    @if math.is-unitless($px) {
+        @return #{math.div($px, 16)}rem;
+    } @else {
+        @error "Don't use units of measurement when working with the rem() function! Pass only numbers as arguments."
+    }
+}

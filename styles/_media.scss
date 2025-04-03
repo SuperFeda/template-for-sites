@@ -1,0 +1,118 @@
+$desktop-above: 1281px;
+$desktop: 1280px;
+
+$tablet-above: 1024px;
+$tablet: 1023px;
+
+$mobile-above: 768px;
+$mobile: 767px;
+
+$mobile-s-above: 481px;
+$mobile-s: 480px;
+
+/*
+    ru: миксины для упрощения работы с медиа-запросами.
+
+    Миксины с Above для применения стилей к экранам, начиная от определённой ширины и шире
+    (например, mobile-above для >= 768px), это типично для "mobile-first". Миксины без Above применяют стили к
+    экранам до определённой ширины и меньше (например, tablet для <= 1023px).
+
+    Пример использования:
+
+        SCSS код:
+        button {
+            font-size: rem(12);
+
+            @include tablet {
+                font-size: rem(9);
+            }
+        }
+
+        Перевод в CSS:
+        button {
+            font-size: 0.75rem;
+        }
+        @media (max-width: 1023px) {
+            button {
+                font-size: 0.5625rem;
+            }
+        }
+
+
+
+
+    en: Mixins to simplify working with media queries.
+
+    Mixins with Above apply styles to screens starting from a specific width and wider (e.g., mobile-above for >= 768px),
+    which is typical for a "mobile-first" approach. Mixins without Above apply styles to screens up to a specific
+    width and narrower (e.g., tablet for <= 1023px).
+
+    Example usage:
+
+        SCSS code:
+        button {
+            font-size: rem(12);
+
+            @include tablet {
+                font-size: rem(9);
+            }
+        }
+
+        Compiled CSS:
+        button {
+            font-size: 0.75rem;
+        }
+        @media (max-width: 1023px) {
+            button {
+                font-size: 0.5625rem;
+            }
+        }
+*/
+
+@mixin desktopAbove {
+    @media (min-width: $desktop-above) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (max-width: $desktop) {
+        @content;
+    }
+}
+
+@mixin tabletAbove {
+    @media (min-width: $tablet-above) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: $tablet) {
+        @content;
+    }
+}
+
+@mixin mobileAbove {
+    @media (min-width: $mobile-above) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
+
+@mixin mobile-sAbove {
+    @media (min-width: $mobile-s-above) {
+        @content;
+    }
+}
+
+@mixin mobile-s {
+    @media (max-width: $mobile-s) {
+        @content;
+    }
+}

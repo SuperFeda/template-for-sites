@@ -1,0 +1,32 @@
+.no-display {
+    /*
+        ru: полностью скрыть элемент на странице
+        en: completely hide the element on the page
+    */
+    @include noDisplay();
+}
+
+.disable {
+    pointer-events: none !important;
+    overflow: hidden !important;
+}
+
+.hidden-mobile {
+    /*
+        ru: скрыть элемент на экране меньше 767px
+        en: hide an item on the screen smaller than 767px
+    */
+    @include mobile {
+        @include noDisplay();
+    }
+}
+
+.visible-mobile {
+    /*
+        ru: отобразить элемент на мобильном устройстве и скрыть, если размер экрана больше 767px
+        en: display the item on a mobile device and hide it if the screen size is greater than 767px
+    */
+    @include mobileAbove {
+        @include noDisplay();
+    }
+}
